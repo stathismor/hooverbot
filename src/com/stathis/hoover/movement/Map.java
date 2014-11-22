@@ -31,6 +31,10 @@ public class Map implements Validatable {
         map[point.x][point.y] = 1;
     }
     
+    public void applyDirt(int x, int y) {
+        map[x][y] = 1;
+    }
+    
     /*
      * Used for debugging
      */

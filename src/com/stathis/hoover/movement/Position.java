@@ -8,8 +8,9 @@ public class Position extends Point implements Validatable {
     
     private Dimensions dimensions = null;
     
-    public Position(Point point, Dimensions dimensions) {
-        this(point.x, point.y, dimensions);
+    public Position(int x, int y) {
+        super(x, y);
+        
     }
     
     public Position(int x, int y, Dimensions dimensions) {
@@ -17,12 +18,17 @@ public class Position extends Point implements Validatable {
         this.dimensions = dimensions;
     }
 
+    public Position(Point point, Dimensions dimensions) {
+        this(point.x, point.y, dimensions);
+    }
+
     public boolean isValid() {
-        boolean isValid = true;
+        boolean isValid = false;
         
-        if (x > dimensions.x ||
-            y > dimensions.y) {
-            return false;
+        if (dimensions != null && 
+            x <= dimensions.x &&
+            y <= dimensions.y) {
+            return true;
         }
         
         return isValid;

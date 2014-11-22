@@ -67,6 +67,4 @@ public class Movements extends LinkedList<Character> implements Validatable {
         
         return isValid;
     }
-    
-    
 }

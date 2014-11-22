@@ -52,11 +52,20 @@ public class HooverBot {
         }
     }
 
-    public void clean(Movements movements) {
+    public Solution clean(Movements movements) {
+        
+        Solution solution = null;
+        
         for (ListIterator<Character> iter = movements.listIterator(); iter.hasNext(); ) {
             Character direction = iter.next();
             move(direction);
         }
-    }
 
+        solution = new Solution(position, dirtsCleaned);
+        
+        System.out.println(position.x + " " + position.y);
+        System.out.println(dirtsCleaned);
+        
+        return solution;
+    }
 }
