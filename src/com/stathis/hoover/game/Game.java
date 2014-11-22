@@ -43,7 +43,6 @@ public class Game {
             retVal = validate(map, position);
         }
         
-        
         if (retVal) {
             HooverBot hooverbot = new HooverBot(map, position);
             hooverbot.clean(movements);            

@@ -10,6 +10,10 @@ public class Dimensions extends Point implements Validatable {
         super(position);
     }
 
+    public Dimensions(int x, int y) {
+        super(x, y);
+    }
+
     @Override
     public boolean isValid() {
         boolean isValid = true;

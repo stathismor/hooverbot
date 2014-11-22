@@ -4,13 +4,14 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 import com.stathis.hoover.exception.InvalidDirectionException;
+import com.stathis.hoover.validation.Validatable;
 
-public class Movements extends LinkedList<Character> {
+public class Movements extends LinkedList<Character> implements Validatable {
     
     int lineNumber = -1;
     
-    public Movements(String movementStr, int lineNumber)
-                                             throws InvalidDirectionException {
+    public Movements(String movementStr, int lineNumber) {
+                                         //throws InvalidDirectionException {
         this.lineNumber = lineNumber;
         char[] movementsArray = movementStr.toCharArray();
         
@@ -30,8 +31,11 @@ public class Movements extends LinkedList<Character> {
 //        }
     }
     
-    private void validate(Character direction) throws InvalidDirectionException {
-        
+    public Movements(String movementStr) {
+        this(movementStr, 0);
+    }
+    
+    private boolean validate(Character direction) { //throws InvalidDirectionException {
         boolean isValid = true;
         
         switch (direction) {
@@ -46,8 +50,22 @@ public class Movements extends LinkedList<Character> {
         }
         
         if (!isValid) {
-            throw new InvalidDirectionException(lineNumber);
+            //throw new InvalidDirectionException(lineNumber);
         }
+        return isValid;
+        
+    }
+
+    @Override
+    public boolean isValid() {
+        boolean isValid = true;
+        
+        for (ListIterator<Character> iter = listIterator(); iter.hasNext(); ) {
+            Character direction = iter.next();
+            validate(direction);
+        }
+        
+        return isValid;
     }
     
     

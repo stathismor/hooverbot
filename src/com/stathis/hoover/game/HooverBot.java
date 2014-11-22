@@ -57,8 +57,6 @@ public class HooverBot {
             Character direction = iter.next();
             move(direction);
         }
-        System.out.println(position);
-        System.out.println(dirtsCleaned);
     }
 
 }
