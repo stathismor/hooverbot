@@ -20,7 +20,7 @@ Alternatively you can change to the jar directory, and after you make sure you h
 
 Execute tests
 -------------
-Same as before, but execute "hooverbot_linux-junit.sh". You should get the following message.
+Same as before, but execute "hooverbot-junit_linux.sh". You should get the following message:
 
 JUnit version 4.11
 ................
