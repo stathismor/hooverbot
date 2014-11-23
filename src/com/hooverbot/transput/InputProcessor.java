@@ -20,7 +20,7 @@ public class InputProcessor {
     public InputProcessor() {}
 
     /**
-     * A generic process method to be used for various entities.
+     * A generic process method to be used by various entities.
      * 
      * @param  line   The line to be processed, as a string.
      * @return Point  Point to be processed
@@ -149,11 +149,11 @@ public class InputProcessor {
      * @throws GameException  driving instructions should be consisted of specific
      *                        characters
      */
-    public DrivingInstructions processMovements(String line, int lineNumber) 
+    public DrivingInstructions processDrivingInstructions(String line, int lineNumber) 
                                               throws InvalidDirectionException {
         DrivingInstructions drivingInstructions = null;
-        drivingInstructions  = new DrivingInstructions(line);
-        if (drivingInstructions.checkSyntax()) {
+        drivingInstructions = new DrivingInstructions(line);
+        if (!drivingInstructions.checkSyntax()) {
             throw new InvalidDirectionException(lineNumber);
         }
         return drivingInstructions;

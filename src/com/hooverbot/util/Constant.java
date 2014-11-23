@@ -3,7 +3,6 @@ package com.hooverbot.util;
 public class Constant {
     
     public enum Error {
-        ERROR_OK (""),
         ERROR_MAP_IS_NOT_SQUARE ("X and y dimensions of the map are different."),
         ERROR_POSITION_IS_OUT_OF_MAP_BOUNDS ("Position is out of map bounds");
 
@@ -20,5 +19,10 @@ public class Constant {
         public String toString(){
            return description;
         }
+    }
+    
+    public enum MapTile {
+        TILE_EMPTY,
+        TILE_DIRT;
     }
 }

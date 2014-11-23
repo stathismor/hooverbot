@@ -37,10 +37,19 @@ public class Position extends Point implements IValidatable {
         boolean isValid = false;
         
         if (dimensions != null && 
-            x <= dimensions.x &&
-            y <= dimensions.y) {
+            x >= 0 && x < dimensions.x &&
+            y>= 0 && y < dimensions.y) {
             return true;
         }
         return isValid;
+    }
+    
+    /**
+     * Copy constructor
+     * 
+     * @param position  Another position
+     */
+    public Position(Position position) {
+        super(position);
     }
 }

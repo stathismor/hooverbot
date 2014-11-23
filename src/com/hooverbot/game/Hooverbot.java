@@ -12,11 +12,12 @@ import com.hooverbot.movement.Position;
  * and clean dirts. Available for only £99.
  *
  */
-public class Hooverot {
+public class Hooverbot {
 
     private Map map = null;
     private Position position = null;
     private int dirtsCleaned = 0;
+    Position previousPosition = null;
     
     /**
      * Constructor
@@ -24,9 +25,10 @@ public class Hooverot {
      * @param map       Robot is aware of the whole map.
      * @param position  Initial position of the robot
      */
-    public Hooverot(Map map, Position position) {
+    public Hooverbot(Map map, Position position) {
         this.map = map;
         this.position = position;
+        previousPosition = new Position(position);
     }
     
     /**
@@ -36,7 +38,7 @@ public class Hooverot {
      */
     private void move(char direction) {
         
-        Position previousPosition = position;
+        previousPosition.setLocation(position);
         
         switch (direction) {
             case 'N':
@@ -59,7 +61,7 @@ public class Hooverot {
         if (position.isValid()) {
             doClean(position);
         } else {
-            position = previousPosition;
+            position.setLocation(previousPosition);
         }
         
     }
@@ -73,6 +75,11 @@ public class Hooverot {
     public Solution clean(DrivingInstructions drivingInstructions) {
         
         Solution solution = null;
+        
+        // Check if initial position needs cleaning
+        if (position.isValid()) {
+            doClean(position);
+        }
         
         for (ListIterator<Character> iter = drivingInstructions.listIterator();
              iter.hasNext(); ) {

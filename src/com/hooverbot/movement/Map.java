@@ -3,7 +3,10 @@ package com.hooverbot.movement;
 import java.awt.Point;
 
 import com.hooverbot.exception.DirtOutOfMapBoundsException;
+import com.hooverbot.util.Constant.MapTile;
 import com.hooverbot.validation.IValidatable;
+
+import static com.hooverbot.util.Constant.MapTile.*;
 
 /*
  * Represents the map of our game. It does that by initially creating and empty
@@ -23,7 +26,7 @@ import com.hooverbot.validation.IValidatable;
  */
 public class Map implements IValidatable {
 
-    private byte[][] map ;
+    private MapTile[][] map;
     private Dimensions dimensions = null;
     
     /**
@@ -33,12 +36,12 @@ public class Map implements IValidatable {
      */
     public Map(Dimensions dimensions) {
         this.dimensions = dimensions;
-        map = new byte[dimensions.x][dimensions.y];
+        map = new MapTile[dimensions.x][dimensions.y];
         
         // Initialise map
         for (int x = 0; x < dimensions.x; x ++) {
             for (int y = 0; y < dimensions.y; y++) {
-                map[x][y] = 0;
+                map[x][y] = MapTile.TILE_EMPTY;
             }
         }
     }
@@ -69,7 +72,7 @@ public class Map implements IValidatable {
             y >= dimensions.y) {
             throw new DirtOutOfMapBoundsException(lineNumber);
         }
-        map[x][y] = 1;
+        map[x][y] = TILE_DIRT;
     }
  
     /**
@@ -81,8 +84,8 @@ public class Map implements IValidatable {
     public boolean hasDirt(Point position) {
         boolean hasDirt = false;
         
-        if (map[position.x][position.y] == 1) {
-            map[position.x][position.y] = 0;
+        if (map[position.x][position.y] == TILE_DIRT) {
+            map[position.x][position.y] = TILE_EMPTY;
             hasDirt = true;
         }
         return hasDirt;

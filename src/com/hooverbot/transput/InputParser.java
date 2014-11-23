@@ -2,6 +2,8 @@ package com.hooverbot.transput;
 
 import java.awt.Point;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -39,7 +41,12 @@ public class InputParser {
     public void parse() throws GameException {
         
         BufferedReader reαder = null;
-        
+        File inputFile = new File(filename);
+
+        if (!inputFile.exists() || !inputFile.isFile()) {
+            throw new GameException("Input file not found");
+        }
+
         try {
             reαder = new BufferedReader(new FileReader(filename));
             int lineNumber = 1; // Tells us where currentLine is at
@@ -67,9 +74,11 @@ public class InputParser {
             while (currentLine != null) {
                 
                 if (lineNumber > 2) {
+                    
                     if (nextLine == null) {
-                        drivingInstructions = processor.processMovements(currentLine,
-                                                               lineNumber);
+                        drivingInstructions = 
+                               processor.processDrivingInstructions(currentLine,
+                                                                    lineNumber);
                     } else {
                         Point dirt = processor.processDirt(currentLine,
                                                            lineNumber);
@@ -78,7 +87,7 @@ public class InputParser {
                 }
                 
                 currentLine = nextLine;
-                nextLine = reαder.readLine().trim();
+                nextLine = reαder.readLine();
                 lineNumber++;
             }
         } catch (IOException ioe) {
