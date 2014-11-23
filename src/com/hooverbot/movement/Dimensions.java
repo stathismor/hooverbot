@@ -5,7 +5,8 @@ import java.awt.Point;
 import com.hooverbot.validation.IValidatable;
 
 /**
- * Holds the dimensions of a map.
+ * Holds the dimensions of a map. Although not an actual point, it uses the Point
+ * class for storing the dimensions.
  */
 public class Dimensions extends Point implements IValidatable {
 

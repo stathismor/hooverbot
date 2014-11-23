@@ -8,6 +8,8 @@ import com.hooverbot.util.Constant.Error;
  */
 public class Logger {
 
+    private static final String ERROR_HEADER = "[ERROR] - An error occured while running the game";
+    
     /**
      * Empty constructor
      */
@@ -19,7 +21,7 @@ public class Logger {
      * @param e  Exception to log
      */
     public static void log(Exception e) {
-        System.err.println("[ERROR] - An error occured while running the game:");
+        System.err.println(ERROR_HEADER);
         System.err.println(e.getMessage());
     }
 
@@ -29,8 +31,7 @@ public class Logger {
      * @param error  Error to log
      */
     public static void log(Error error) {
-        String errorMsg = "[ERROR] - An error occured while running the game:\n" +
-                          error.toString();
+        String errorMsg = ERROR_HEADER + "\n" + error.toString();
         System.err.println(errorMsg);
     }
 

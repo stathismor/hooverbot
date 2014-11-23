@@ -6,7 +6,9 @@ import java.util.ListIterator;
 import com.hooverbot.validation.IValidatable;
 
 /**
- * DrivingInstructions is a series of directions to follow on the map.
+ * DrivingInstructions is a series of directions to follow on the map. We used
+ * a queue implementation for this, as all instructions are parsed sequentially,
+ * in the other they are entered.
  */
 public class DrivingInstructions extends LinkedList<Character> implements IValidatable {
     
@@ -70,7 +72,7 @@ public class DrivingInstructions extends LinkedList<Character> implements IValid
     
     /**
      * This function wraps the iteration of our internal instructions' collection.
-     * Several functions whose class follow the IDrivingInstructionValidator interface
+     * Several methods whose class follow the IDrivingInstructionValidator interface
      * can be run on each individual instruction. 
      * 
      * @param  drivingInstructionValidator  The object whose process function will be

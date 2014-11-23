@@ -1,6 +1,9 @@
 package com.hooverbot.movement;
 
-
+/**
+ * Interface to be used in foreach method of DrivingInstructions
+ *
+ */
 public interface IDrivingInstructionValidator {
 
     /**

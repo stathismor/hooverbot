@@ -38,6 +38,8 @@ public class Game {
     
     /**
      * Runs the game. It checks for errors and produces a solution.
+     * 
+     * @param showResult  Whether we want our results to be displayed
      */
     public void run(boolean showResult) {
         InputParser parser = new InputParser(filename);
@@ -56,10 +58,12 @@ public class Game {
         Position position = parser.getPosition();
         DrivingInstructions drivingInstructions = parser.getDrivingInstructions();
         
+        // Validate relevant entities
         if (retVal) {
             retVal = validate(map, position);
         }
         
+        // Initialise our robot
         if (retVal) {
             Hooverbot hooverbot = new Hooverbot(map, position);
             solution = hooverbot.clean(drivingInstructions);            
@@ -68,6 +72,7 @@ public class Game {
             }
         }
         
+        // Write to standard output
         if (retVal && showResult) {
             StandardOutputWriter outputWriter = 
                                              new StandardOutputWriter(solution);

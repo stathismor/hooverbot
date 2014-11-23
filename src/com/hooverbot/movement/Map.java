@@ -8,7 +8,7 @@ import com.hooverbot.validation.IValidatable;
 
 import static com.hooverbot.util.Constant.MapTile.*;
 
-/*
+/**
  * Represents the map of our game. It does that by initially creating and empty
  * array with the size of the dimensions. It can be filled with dirts, or any
  * other elements that can be added in the future.
