@@ -21,11 +21,4 @@ public class Constant {
            return description;
         }
     }
-    
-    public enum IOMedium {
-        STDOUT,
-        FILE,
-        STRING
-        // others can be added in the future (eg Oculus Rift)
-    }
 }

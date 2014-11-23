@@ -7,21 +7,32 @@ import com.hooverbot.validation.IValidatable;
 public class Position extends Point implements IValidatable {
     
     private Dimensions dimensions = null;
-    
-    public Position(int x, int y) {
-        super(x, y);
-        
-    }
-    
+
+    /**
+     * Constructor using x and y coordinates
+     * 
+     * @param x  The x coordinate
+     * @param y  The y coordinate
+     */
     public Position(int x, int y, Dimensions dimensions) {
         super(x, y);
         this.dimensions = dimensions;
     }
 
+    /**
+     * Constructor using Point
+     * 
+     * @param point       The position
+     * @param dimensions  The dimensions of the map
+     */
     public Position(Point point, Dimensions dimensions) {
         this(point.x, point.y, dimensions);
     }
 
+    /**
+     * Implemented method. Checks if a position is inside the map.
+     */
+    @Override
     public boolean isValid() {
         boolean isValid = false;
         
@@ -30,7 +41,6 @@ public class Position extends Point implements IValidatable {
             y <= dimensions.y) {
             return true;
         }
-        
         return isValid;
     }
 }

@@ -7,3 +7,5 @@ Run tests
 java -cp .;bin\;lib\junit-4.11.jar;lib\hamcre
 st-core-1.3.jar org.junit.runner.JUnitCore com.hooverbot.AllTests
 
+Assumptions made
+We are the ones entering the data

@@ -2,32 +2,32 @@ package com.hooverbot.game;
 
 import static com.hooverbot.util.Constant.Error.ERROR_MAP_IS_NOT_SQUARE;
 import static com.hooverbot.util.Constant.Error.ERROR_POSITION_IS_OUT_OF_MAP_BOUNDS;
-import static com.hooverbot.util.Constant.IOMedium.*;
 
 import com.hooverbot.exception.GameException;
 import com.hooverbot.movement.Map;
-import com.hooverbot.movement.Movements;
+import com.hooverbot.movement.DrivingInstructions;
 import com.hooverbot.movement.Position;
-import com.hooverbot.transput.IInputParser;
-import com.hooverbot.transput.IOutputWriter;
-import com.hooverbot.transput.InputParserFactory;
-import com.hooverbot.transput.OutputWriterFactory;
+import com.hooverbot.transput.InputParser;
+import com.hooverbot.transput.StandardOutputWriter;
 import com.hooverbot.util.Logger;
 import com.hooverbot.validation.IValidatable;
 
 public class Game {
 
-    private static final String filename = "input.txt";
+    private static final String DEFAULT_INPUT_FILENAME = "input.txt";
+    private String filename = "";
     
     public static void main(String[] args) {
-        Game game = new Game();
+        Game game = new Game(DEFAULT_INPUT_FILENAME);
         game.run();
     }
     
-    public Game() {}
+    public Game(String filename) {
+        this.filename = filename;
+    }
     
     public void run() {
-        IInputParser parser = InputParserFactory.createInputParser(FILE, filename);
+        InputParser parser = new InputParser(filename);
         boolean retVal = true;
         
         // Parse input file
@@ -41,7 +41,7 @@ public class Game {
         // Get required game entities
         Map map = parser.getMap();    
         Position position = parser.getPosition();
-        Movements movements = parser.getMovements();
+        DrivingInstructions drivingInstructions = parser.getDrivingInstructions();
         
         if (retVal) {
             retVal = validate(map, position);
@@ -49,16 +49,16 @@ public class Game {
         
         Solution solution =  null;
         if (retVal) {
-            HooverBot hooverbot = new HooverBot(map, position);
-            solution = hooverbot.clean(movements);            
+            Hooverot hooverbot = new Hooverot(map, position);
+            solution = hooverbot.clean(drivingInstructions);            
             if (solution == null) {
                 retVal = false;
             }
         }
         
         if (retVal) {
-            IOutputWriter outputWriter = 
-                            OutputWriterFactory.createOutputWriter(STDOUT, solution);
+            StandardOutputWriter outputWriter = 
+                                             new StandardOutputWriter(solution);
             outputWriter.write();
         }
     }
