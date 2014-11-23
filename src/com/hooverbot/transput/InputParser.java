@@ -4,10 +4,10 @@ import static com.hooverbot.util.Constant.Error.ERROR_OK;
 
 import java.awt.Point;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
-import javax.imageio.stream.ImageInputStream;
+import java.io.Reader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import com.hooverbot.exception.GameException;
 import com.hooverbot.exception.InvalidNumberOfPointCoordsException;
@@ -21,22 +21,25 @@ import com.hooverbot.util.Constant.Error;
 /**
  * This class is responsible for parsing an input file, and do some
  * syntax-specific validation
+ * @param <T>
  */
-public class InputParser implements IInputParser {
+public class InputParser <T extends Reader> implements IInputParser {
 
     private String filename = "";
     private Dimensions dimensions = null;
     private Position position = null;
     private Map map = null;
     private Movements movements = null;
+    private Class<?> readerClass = null;
 
     /**
      *  Constructor. Only copies in the filename.
      *  
      *  @param filename    The full filename (path + file name)
      */
-    public InputParser(String filename) {
+    public InputParser(String filename, Class<T> type) {
         this.filename = filename;
+        this.readerClass = type;
     }
     
     /**
@@ -51,7 +54,9 @@ public class InputParser implements IInputParser {
         BufferedReader reαder = null;
         
         try {
-            reαder = new BufferedReader(new FileReader(filename));
+            Constructor<?> constructor = readerClass.getConstructor(String.class);
+            Reader readerObject = (Reader)constructor.newInstance(filename);
+            reαder = new BufferedReader(readerObject);
             int lineNumber = 1; // Tells us where currentLine is at
             String currentLine = reαder.readLine();
             String nextLine = reαder.readLine();
@@ -85,6 +90,12 @@ public class InputParser implements IInputParser {
             }
         } catch (IOException ioe) {
             throw new GameException("Error reading input file", ioe);
+        } catch (InvocationTargetException | InstantiationException |
+                 IllegalAccessException | NoSuchMethodException |
+                 SecurityException e) {
+            e.printStackTrace();
+            throw new GameException("Error reading the input", e);
+            
         }
         finally {
             try {

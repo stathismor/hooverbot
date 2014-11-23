@@ -1,0 +1,9 @@
+Run game
+--------
+java -cp .;bin com.hooverbot.game.Game
+
+Run tests
+--------
+java -cp .;bin\;lib\junit-4.11.jar;lib\hamcre
+st-core-1.3.jar org.junit.runner.JUnitCore com.hooverbot.AllTests
+

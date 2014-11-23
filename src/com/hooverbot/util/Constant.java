@@ -24,7 +24,8 @@ public class Constant {
     
     public enum IOMedium {
         STDOUT,
-        FILE
+        FILE,
+        STRING
         // others can be added in the future (eg Oculus Rift)
     }
 }

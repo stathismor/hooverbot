@@ -27,7 +27,7 @@ public class Game {
     public Game() {}
     
     public void run() {
-        IInputParser parser = InputParserFactory.createOutput(FILE, filename);
+        IInputParser parser = InputParserFactory.createInputParser(FILE, filename);
         boolean retVal = true;
         
         // Parse input file
