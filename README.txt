@@ -58,3 +58,12 @@ Windows
 java version "1.8.0_20"
 Java(TM) SE Runtime Environment (build 1.8.0_20-b26)
 Java HotSpot(TM) 64-Bit Server VM (build 25.20-b23, mixed mode)
+
+
+====================
+= Notes ==
+====================
+1) Assumptions made:
+  a) We are the ones feeding the data to the Hoverbot. We don't expect others having access to the Hoverbot public methods. 
+  b) We don't have to provide for an insanely huge map. All modern computers should be able to handle a map with thousands millions of tiles, but for very big maps (eg trillions of tiles), maybe a different implementation is required (notes in Map contructor)
+2) Because of 1a, the syntax-specific validation of the file, was left for the InputParser, and everything else, logic-specific, is for robot/game to check. For instance, the input parser will validate a position coordinate is not a letter, but making sure it is in the bounds of a map, is left for the Game class. If you start feeding the Hooverbot directly with invalid data, undefined behaviour might occur.
