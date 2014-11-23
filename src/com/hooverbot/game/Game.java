@@ -95,7 +95,7 @@ public class Game {
         if (isValid) {
             isValid = position.isValid();
             if (!isValid) {
-                Logger.log(ERROR_MAP_IS_NOT_SQUARE);
+                Logger.log(ERROR_POSITION_IS_OUT_OF_MAP_BOUNDS);
             }
         }
         

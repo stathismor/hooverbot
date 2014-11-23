@@ -3,18 +3,14 @@ package com.hooverbot.game;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
-import java.io.File;
 
 import org.junit.Test;
 
 import com.hooverbot.UnitTester;
 import com.hooverbot.exception.GameException;
-import com.hooverbot.game.Game;
-import com.hooverbot.game.Hooverbot;
-import com.hooverbot.game.Solution;
 import com.hooverbot.movement.Dimensions;
-import com.hooverbot.movement.Map;
 import com.hooverbot.movement.DrivingInstructions;
+import com.hooverbot.movement.Map;
 import com.hooverbot.movement.Position;
 
 public class GameLogicTest extends UnitTester {
